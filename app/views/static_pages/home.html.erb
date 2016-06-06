@@ -27,7 +27,7 @@
   <% @links.all.each do |link| %>
     <div class="link-<%= link.id %>">
       <%= link_to link.title, link.url, class: "#{link.status}" %>
-      Mark as <%= link.status %>
+      <%= link.read ? "Mark as unread" : "Mark as read" %>
     </div>
   <% end %>
 </section>
