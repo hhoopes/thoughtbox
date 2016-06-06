@@ -11,7 +11,6 @@ class ApplicationController < ActionController::Base
 
   def must_login
     if !current_user
-      flash[:info] = "Please Log In or Sign Up"
       redirect_to login_path
     end
   end

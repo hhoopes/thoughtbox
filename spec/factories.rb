@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :link do
-    url "MyString"
-    title "MyString"
-    read "MyString"
+    url "http://example.com"
+    title "New link"
+    read false
   end
   factory :user do
     email "name@example.com"

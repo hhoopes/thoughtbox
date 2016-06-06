@@ -1,0 +1,12 @@
+<h1>Edit Link "<%= @link.title %>"</h1>
+<%= form_for(@link) do |f| %>
+  <p>
+    <%= f.text_field :url, placeholder: "Link URL" %>
+  </p>
+  <p>
+    <%= f.text_field :title, placeholder: "Title" %>
+  </p>
+  <p>
+    <%= f.submit "Submit Link" %>
+  </p>
+<% end %>

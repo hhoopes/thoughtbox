@@ -1,6 +1,4 @@
 class LinksController < ApplicationController
-  # before_action :must_login, only: [:create, :index]
-
   def new
     @link = current_user.links.build
   end
@@ -11,6 +9,15 @@ class LinksController < ApplicationController
       flash[:info] = "'#{@link.title}' saved!"
       redirect_to root_path
     end
+  end
+
+  def edit
+    @link = Link.find(params[:id])
+  end
+
+  def update
+    link = Link.find(params[:id]).update(link_params)
+    redirect_to root_path
   end
 
 private

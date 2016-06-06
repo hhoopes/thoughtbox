@@ -1,33 +1,38 @@
-<h1>Welcome, <%= current_user.email %></h1>
-<p>
-  <%= link_to "Logout", logout_path %>
-</p>
+<div class="container">
+  <p>Welcome, <%= current_user.email %></h1>
+  <p>
+    <%= link_to "Logout", logout_path %>
+  </p>
 
-<h2>
-  Add a new link
-</h2>
+  <h2>
+    Add a new link
+  </h2>
 
-<section class="new_link">
-  <%= form_for(@link) do |f| %>
-    <p>
-      <%= f.text_field :url, placeholder: "Link URL" %>
-    </p>
-    <p>
-      <%= f.text_field :title, placeholder: "Title" %>
-    </p>
-    <p>
-      <%= f.submit "Submit Link" %>
-    </p>
-  <% end %>
-</section>
+  <section class="new_link">
+    <%= form_for(@link) do |f| %>
+      <p>
+        <%= f.text_field :url, placeholder: "Link URL" %>
+      </p>
+      <p>
+        <%= f.text_field :title, placeholder: "Title" %>
+      </p>
+      <p>
+        <%= f.submit "Submit Link" %>
+      </p>
+    <% end %>
+  </section>
 
-<section class="all_links">
-  <h2>All Links</h2>
+  <section class="all_links">
+    <h2>All Links</h2>
 
-  <% @links.all.each do |link| %>
-    <div class="link-<%= link.id %>">
-      <%= link_to link.title, link.url, class: "#{link.status}" %>
-      <%= link.read ? "Mark as unread" : "Mark as read" %>
-    </div>
-  <% end %>
-</section>
+    <% @links.all.each do |link| %>
+      <div id="link-<%= link.id %>">
+        <p class="link">
+          <%= link_to link.title, link.url, class: "#{link.status}" %>
+          <%= button_to link.read ? "Mark as unread" : "Mark as read", class:"toggle-read"%>
+          <%= button_to "Edit", edit_link_path(link), method: "get" %>
+        </p>
+      </div>
+    <% end %>
+  </section>
+</div
