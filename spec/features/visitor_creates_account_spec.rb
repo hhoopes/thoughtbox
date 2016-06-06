@@ -15,7 +15,7 @@ feature "visitor can register as a user" do
 
     click_on "Submit"
 
-    expect(page).to have_content("Welcome Heidi")
+    expect(page).to have_content("Welcome, #{User.last.email}")
     expect(page).to have_content("Add a new link")
   end
 end

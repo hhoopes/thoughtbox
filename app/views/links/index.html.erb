@@ -1,1 +1,8 @@
-Add a new link
+<h1>Welcome, <%= current_user.email %></h1>
+
+<h2>
+  <% if @links.empty? %>
+    Add a new link
+  <% else %>
+  <% end %>
+</h2>
