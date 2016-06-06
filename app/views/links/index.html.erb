@@ -1,4 +1,7 @@
 <h1>Welcome, <%= current_user.email %></h1>
+<p>
+  <%= link_to "Logout", logout_path %>
+</p>
 
 <h2>
   <% if @links.empty? %>
