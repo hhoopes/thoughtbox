@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redirect_to "/"
     else
-      # flash message
+      redirect_to signin_path
     end
   end
 

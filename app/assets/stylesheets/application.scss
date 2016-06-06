@@ -17,3 +17,11 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.unread {
+
+}
+
+.read {
+  text-decoration: line-through;
+}
