@@ -1,0 +1,40 @@
+<div class="container">
+  <p>Welcome, <%= current_user.email %></h1>
+  <p>
+    <%= link_to "Logout", logout_path %>
+  </p>
+
+  <h2>
+    Add a new link
+  </h2>
+
+  <section class="new_link">
+    <%= form_for(@link) do |f| %>
+      <p>
+        <%= f.text_field :url, placeholder: "Link URL" %>
+      </p>
+      <p>
+        <%= f.text_field :title, placeholder: "Title" %>
+      </p>
+      <p>
+        <%= f.submit "Submit Link" %>
+      </p>
+    <% end %>
+  </section>
+
+  <section class="all_links">
+    <h2>All Links</h2>
+
+    <% @links.all.each do |link| %>
+      <div id="link-<%= link.id%>" class="each">
+        <p>
+          <%= link_to link.title, link.url, class: "#{link.status if link.status == 'read'} link", id: link.id %>
+        </p>
+        <p>
+          <A HREF="#" class="toggle-status">(Mark as <%= link.read ? "unread" : "read" %>)</A>
+          <%= link_to "(Edit)", edit_link_path(link), method: "get" %>
+        </p>
+      </div>
+    <% end %>
+  </section>
+</div

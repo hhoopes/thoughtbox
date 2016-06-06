@@ -27,4 +27,6 @@ end
 
 group :test do
   gem 'simplecov', require: false
+  gem 'capybara-webkit'
+  gem 'launchy'
 end

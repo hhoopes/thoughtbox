@@ -17,3 +17,13 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+
+.read {
+  text-decoration: line-through;
+  color: grey
+}
+
+div .each {
+  padding-top: 15px;
+}
