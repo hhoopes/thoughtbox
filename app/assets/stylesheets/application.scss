@@ -18,16 +18,12 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-.unread {
-
-}
 
 .read {
   text-decoration: line-through;
   color: grey
 }
 
-.link {
-  margin: 10px;
-  display: inline-block;
+div .each {
+  padding-top: 15px;
 }

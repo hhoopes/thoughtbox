@@ -19,7 +19,7 @@ feature "User creates a link" do
     expect(current_path).to eq("/")
     within("div#link-#{link.id}") do
       expect(page).to have_link(link_params[:title], href: link_params[:url])
-      expect(page).to have_button("Mark as read")
+      expect(page).to have_content("Mark as read")
     end
   end
 end

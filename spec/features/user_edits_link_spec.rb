@@ -21,5 +21,30 @@ feature "user edits a link", js: true do
     fill_in "Link URL", with: new_link_params[:url]
     click_on "Submit"
     expect(page).not_to have_link(link.title, href: link.url)
+    expect(page).to have_link(new_link_params[:title], href: new_link_params[:url])
+  end
+
+  scenario "they can't change url to invalid url" do
+    user = create(:user)
+    user.links << create(:link)
+    link = user.links.last
+
+    invalid_link_params = {
+      url: "invalid link",
+      title: "My new favorite site"
+    }
+
+    sign_in(user)
+    visit '/'
+
+    within("div#link-#{link.id}") do
+      click_on "Edit"
+    end
+    fill_in "Title", with: invalid_link_params[:title]
+    fill_in "Link URL", with: invalid_link_params[:url]
+    click_on "Submit"
+
+    expect(page).to have_content()
+    expect(page).not_to have_link(invalid_link_params[:title], href: invalid_link_params[:url])
   end
 end
