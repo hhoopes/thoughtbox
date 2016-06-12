@@ -1,4 +1,4 @@
-class LinksController < ApplicationController
+class Api::V1::LinksController < ApplicationController
   def new
     @link = current_user.links.build
   end
@@ -16,13 +16,8 @@ class LinksController < ApplicationController
   end
 
   def update
-    link = Link.find(params[:id])
-    if link.update(link_params)
-      redirect_to root_path
-    else
-      flash[:danger] = "Please submit a valid URL"
-      redirect_to edit_link_path
-    end
+    link = Link.find(params[:id]).update(link_params)
+    redirect_to root_path
   end
 
 private

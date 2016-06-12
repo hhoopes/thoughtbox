@@ -44,7 +44,8 @@ feature "user edits a link", js: true do
     fill_in "Link URL", with: invalid_link_params[:url]
     click_on "Submit"
 
-    expect(page).to have_content()
+    expect(current_path).to eq(edit_link_path(link))
+    expect(page).to have_content("Please submit a valid URL")
     expect(page).not_to have_link(invalid_link_params[:title], href: invalid_link_params[:url])
   end
 end
