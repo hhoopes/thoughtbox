@@ -25,25 +25,31 @@
 
     <form>
       <label class="sr-only" for="search"></label>
-      <input type="text" class="form-control" id="searchLinks" placeholder="Search Links">
+      <input type="text" class="form-control" id="filterLinks" placeholder="Filter Links">
     </form>
+
+    <%= button_tag "Show Read", id: "filterRead", class: "btn-default" %>
+    <%= button_tag "Show Unread", id: "filterUnread", class: "btn-default" %>
+    <%= button_tag "Sort Alphabetically", id: "sortAlpha", class: "btn-default"%>
 
   </section>
 
-  <section class="all_links col-xs-6">
+  <section class=" col-xs-6">
     <h2>All Links</h2>
-    <% @links.all.each do |link| %>
-      <div data-id="<%= link.id%>" class="eachLink">
-        <% readStatus = "read" if link.read %>
-        <p class="<%= readStatus  %>">
-          <%= link_to link.title, link.url, class: "linkTitle" %>
-        </p>
-        <p>
-          <a href="#" class="markAsRead <%= "hidden" if link.read %>">(Mark as read)</a>
-          <a href="#" class="markAsUnread <%= "hidden" if !link.read %>">(Mark as unread)</a>
-          <%= link_to "(Edit)", edit_link_path(link), method: "get" %>
-        </p>
-      </div>
-    <% end %>
+    <div class="allLinks">
+      <% @links.all.each do |link| %>
+        <div data-id="<%= link.id%>" class="eachLink">
+          <% readStatus = "read" if link.read %>
+          <p class="<%= readStatus  %>">
+            <%= link_to link.title, link.url, class: "linkTitle" %>
+          </p>
+          <p>
+            <a href="#" class="markAsRead <%= "hidden" if link.read %>">(Mark as read)</a>
+            <a href="#" class="markAsUnread <%= "hidden" if !link.read %>">(Mark as unread)</a>
+            <%= link_to "(Edit)", edit_link_path(link), method: "get" %>
+          </p>
+        </div>
+      <% end %>
+    </div>
   </section>
 </div

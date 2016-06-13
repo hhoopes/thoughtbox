@@ -12,18 +12,60 @@ $(document).ready(function(){
     Link.updateDatabase(id, false, this);
   });
 
-  $("#searchLinks").keyup(function(event) {
+  $("#filterLinks").keyup(function(event) {
     event.preventDefault();
-    filterText = $(this).val();
-    Link.filter(filterText);
+    text = $(this).val();
+    Link.filterText(text);
   });
+
+  $("#filterUnread").click(function(event) {
+    event.preventDefault();
+    Link.filterStatus(false)
+  })
+
+  $("#filterRead").click(function(event) {
+    event.preventDefault();
+    Link.filterStatus(true)
+  })
+
+  $("#sortAlpha").click(function(event) {
+    event.preventDefault();
+    Link.sortAlpha()
+  })
 })
 
 var Link = {
-  filter: function(filterText) {
+  sortAlpha: function() {
+    sorted =
+    $(".eachLink").sort(function(link, link2){
+      $(link).show();
+      var linkTitle = $(link).find(".linkTitle").text().toLowerCase();
+      var linkTitle2 = $(link2).find(".linkTitle").text().toLowerCase();
+      if (linkTitle < linkTitle2) {
+        return -1;
+      } else if(linkTitle > linkTitle2) {
+        return 1;
+      }
+      else return 0;
+    })
+
+    $(".allLinks").replaceWith(sorted);
+  },
+
+  filterStatus: function(status) {
+    $(".eachLink").each(function(i, link){
+      if(status) {
+        $(link).find(".read").length > 0 ? $(link).show() : $(link).hide();
+      } else {
+        $(link).find(".read").length === 0 ? $(link).show() : $(link).hide();
+      }
+    })
+  },
+
+  filterText: function(text) {
     $(".eachLink").each(function(i, link){
       var linkText = $(link).find(".linkTitle").text().toLowerCase();
-      linkText.indexOf(filterText.toLowerCase()) >= 0 ?
+      linkText.indexOf(text.toLowerCase()) >= 0 ?
         $(link).show() : $(link).hide();
     })
   },
