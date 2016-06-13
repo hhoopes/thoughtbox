@@ -14,7 +14,7 @@ $(document).ready(function(){
 
   $("#searchLinks").keyup(function(event) {
     event.preventDefault();
-    searchText = $(this).val();
+    filterText = $(this).val();
     Link.filter(filterText);
   });
 })
