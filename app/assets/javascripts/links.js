@@ -39,6 +39,7 @@ var Link = {
     sorted =
     $(".eachLink").sort(function(link, link2){
       $(link).show();
+      $(link2).show();
       var linkTitle = $(link).find(".linkTitle").text().toLowerCase();
       var linkTitle2 = $(link2).find(".linkTitle").text().toLowerCase();
       if (linkTitle < linkTitle2) {
@@ -48,7 +49,6 @@ var Link = {
       }
       else return 0;
     })
-
     $(".allLinks").replaceWith(sorted);
   },
 
