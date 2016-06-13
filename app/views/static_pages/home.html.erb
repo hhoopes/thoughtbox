@@ -1,34 +1,42 @@
 <div class="container">
-  <p>Welcome, <%= current_user.email %></h1>
-  <p>
-    <%= link_to "Logout", logout_path %>
-  </p>
+  <section class="col-xs-6">
+    <p>Welcome, <%= current_user.email %></p>
+    <p>
+      <%= link_to "Logout", logout_path %>
+    </p>
 
-  <h2>
-    Add a new link
-  </h2>
+    <h2>
+      Add a new link
+    </h2>
 
-  <section class="new_link">
-    <%= form_for(@link) do |f| %>
-      <p>
-        <%= f.text_field :url, placeholder: "Link URL" %>
-      </p>
-      <p>
-        <%= f.text_field :title, placeholder: "Title" %>
-      </p>
-      <p>
-        <%= f.submit "Submit Link" %>
-      </p>
-    <% end %>
+    <section class="new_link">
+      <%= form_for(@link) do |f| %>
+        <p>
+          <%= f.text_field :url, placeholder: "Link URL" %>
+        </p>
+        <p>
+          <%= f.text_field :title, placeholder: "Title" %>
+        </p>
+        <p>
+          <%= f.submit "Submit Link", class: "btn btn-default" %>
+        </p>
+      <% end %>
+    </section>
+
+    <form>
+      <label class="sr-only" for="search"></label>
+      <input type="text" class="form-control" id="searchLinks" placeholder="Search Links">
+    </form>
+
   </section>
 
-  <section class="all_links">
+  <section class="all_links col-xs-6">
     <h2>All Links</h2>
     <% @links.all.each do |link| %>
       <div data-id="<%= link.id%>" class="eachLink">
         <% readStatus = "read" if link.read %>
         <p class="<%= readStatus  %>">
-          <%= link_to link.title, link.url  %>
+          <%= link_to link.title, link.url, class: "linkTitle" %>
         </p>
         <p>
           <a href="#" class="markAsRead <%= "hidden" if link.read %>">(Mark as read)</a>

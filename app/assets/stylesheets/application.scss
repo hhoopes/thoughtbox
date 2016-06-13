@@ -30,16 +30,22 @@ div .eachLink {
   margin-bottom: 3px;
 }
 
+.col-md-6 {
+  background-color: red;
+}
 .hidden {
-  visibility: hidden
+  visibility: hidden;
 }
 
 .read {
   text-decoration: line-through;
-  color: grey;
+
 }
 
 .read:hover {
-  text-decoration: line-through;;
-  color: grey;
+  text-decoration: line-through;
+}
+
+#searchLinks {
+  margin-top: 30px;
 }
