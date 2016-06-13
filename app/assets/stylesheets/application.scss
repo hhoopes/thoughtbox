@@ -18,12 +18,28 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+body {
+  font-family: 'Droid Sans', sans-serif;
+}
+
+div .eachLink {
+  padding-left: 15px;
+  padding-top: 15px;
+  border: 2px dotted forestGreen;
+  border-radius: 20px;
+  margin-bottom: 3px;
+}
+
+.hidden {
+  visibility: hidden
+}
 
 .read {
   text-decoration: line-through;
-  color: grey
+  color: grey;
 }
 
-div .each {
-  padding-top: 15px;
+.read:hover {
+  text-decoration: line-through;;
+  color: grey;
 }

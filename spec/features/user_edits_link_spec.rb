@@ -14,9 +14,8 @@ feature "user edits a link", js: true do
     sign_in(user)
     visit '/'
 
-    within("div#link-#{link.id}") do
-      click_on "Edit"
-    end
+    click_on "Edit"
+
     fill_in "Title", with: new_link_params[:title]
     fill_in "Link URL", with: new_link_params[:url]
     click_on "Submit"
@@ -37,9 +36,8 @@ feature "user edits a link", js: true do
     sign_in(user)
     visit '/'
 
-    within("div#link-#{link.id}") do
-      click_on "Edit"
-    end
+    click_on "Edit"
+
     fill_in "Title", with: invalid_link_params[:title]
     fill_in "Link URL", with: invalid_link_params[:url]
     click_on "Submit"

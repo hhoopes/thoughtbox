@@ -1,23 +1,35 @@
 $(document).ready(function(){
 
-  $(".toggle-status").click(function(event){
+  $(".markAsRead").click(function(event){
     event.preventDefault();
-    toggleStatus(this)
-    updateLink(this)
+    id = $(this).parents(".eachLink").data("id")
+    Link.updateDatabase(id, true, this);
   });
 
-  var toggleStatus = function(context) {
-    $(context).parent().parent().find(".link").toggleClass("read")
-  }
+  $(".markAsUnread").click(function(event){
+    event.preventDefault();
+    var id = $(this).parents(".eachLink").data("id")
+    Link.updateDatabase(id, false, this);
+  });
+})
 
-  function updateLink(context) {
-    id = $(context).parent().parent().find(".link").attr("id")
+  var Link = {
+
+    toggleStatus: function(status, context) {
+      $(context).toggleClass("hidden");
+      $(context).siblings().first().toggleClass("hidden");
+      $(context).parent().siblings().first().toggleClass('read');
+    },
+
+    updateDatabase: function(id, status, context) {
     $.ajax({
-      url: "/api/v1/links" + id + ".json",
+      url: "/links/" + id + ".json",
       method: "put",
       dataType: "json",
-      data: { }
+      data: { link: {read: status} },
+      success: function() {
+        Link.toggleStatus(status, context);
+      }
     })
   }
-
-})
+}

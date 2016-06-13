@@ -8,6 +8,9 @@ class LinksController < ApplicationController
     if @link.save
       flash[:info] = "'#{@link.title}' saved!"
       redirect_to root_path
+    else
+      flash[:error] = "Please provide a valid URL"
+      redirect_to root_path
     end
   end
 
@@ -18,7 +21,13 @@ class LinksController < ApplicationController
   def update
     link = Link.find(params[:id])
     if link.update(link_params)
-      redirect_to root_path
+      respond_to do |format|
+        format.html do
+          flash[:success] = "Link status updated"
+          redirect_to root_path
+        end
+        format.json { render json: link}
+      end
     else
       flash[:danger] = "Please submit a valid URL"
       redirect_to edit_link_path

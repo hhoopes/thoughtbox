@@ -24,14 +24,15 @@
 
   <section class="all_links">
     <h2>All Links</h2>
-
     <% @links.all.each do |link| %>
-      <div id="link-<%= link.id%>" class="each">
-        <p>
-          <%= link_to link.title, link.url, class: "#{link.status if link.status == 'read'} link", id: link.id %>
+      <div data-id="<%= link.id%>" class="eachLink">
+        <% readStatus = "read" if link.read %>
+        <p class="<%= readStatus  %>">
+          <%= link_to link.title, link.url  %>
         </p>
         <p>
-          <A HREF="#" class="toggle-status">(Mark as <%= link.read ? "unread" : "read" %>)</A>
+          <a href="#" class="markAsRead <%= "hidden" if link.read %>">(Mark as read)</a>
+          <a href="#" class="markAsUnread <%= "hidden" if !link.read %>">(Mark as unread)</a>
           <%= link_to "(Edit)", edit_link_path(link), method: "get" %>
         </p>
       </div>
